@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Assign label
         env:
+          # user-generated values should be parsed outside of the shell
+          # and then the resulting string passed into the shell
           TITLE: ${{ github.event.issue.title }}
         run: |
           if [[ "$TITLE" == *"bug"* ]]; then

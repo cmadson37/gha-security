@@ -5,9 +5,12 @@ on:
       - opened
 jobs:
   assign-label:
+    permissions:
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
+        # another way of safely inspecting user-supplied input outside of the shell
         if: contains(github.event.issue.title, 'bug')
         run: |
           curl -X POST \
